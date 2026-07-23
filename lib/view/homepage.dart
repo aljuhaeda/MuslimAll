@@ -24,48 +24,57 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 560),
+            constraints: const BoxConstraints(maxWidth: 520),
             child: ListView(
-              padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+              padding: const EdgeInsets.fromLTRB(24, 48, 24, 32),
               children: [
                 Stack(
                   children: [
                     Positioned.fill(
-                      child: IslamicLatticeBackground(lineColor: AppColors.indigo, opacity: 0.06),
+                      child: IslamicLatticeBackground(lineColor: AppColors.teal, opacity: 0.035),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Icon(Icons.mosque, color: AppColors.amberDeep, size: 34),
-                          const SizedBox(height: 12),
-                          const Text(
-                            "Assalamu'alaikum",
-                            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.ink),
+                          Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: const BoxDecoration(color: AppColors.tealSoft, shape: BoxShape.circle),
+                            child: const Icon(Icons.mosque_rounded, color: AppColors.tealDeep, size: 26),
                           ),
-                          const SizedBox(height: 6),
-                          Text(_greetingSubtext(), style: const TextStyle(fontSize: 14, color: AppColors.inkMuted)),
+                          const SizedBox(height: 20),
+                          Text(
+                            "Assalamu'alaikum",
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: AppColors.ink),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            _greetingSubtext(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 14.5, color: AppColors.inkMuted, height: 1.5),
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 40),
                 _HomeOptionCard(
                   icon: Icons.access_time_filled_rounded,
                   title: 'Jadwal Sholat',
                   subtitle: 'Waktu sholat untuk seluruh Indonesia',
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrayerTimesScreen())),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 12),
                 _HomeOptionCard(
                   icon: Icons.self_improvement_rounded,
                   title: 'Panduan Sholat',
                   subtitle: 'Tuntunan langkah demi langkah, lengkap 5 waktu',
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrayerGuideScreen())),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 12),
                 _HomeOptionCard(
                   icon: Icons.auto_stories_rounded,
                   title: "Al-Qur'an",
@@ -91,37 +100,47 @@ class _HomeOptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.card,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColors.divider),
-          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 3))],
-        ),
-        padding: const EdgeInsets.all(18),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(color: AppColors.sand, borderRadius: BorderRadius.circular(14)),
-              child: Icon(icon, color: AppColors.indigo, size: 26),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.ink)),
-                  const SizedBox(height: 3),
-                  Text(subtitle, style: const TextStyle(fontSize: 12.5, color: AppColors.inkMuted)),
-                ],
+    return Material(
+      color: AppColors.card,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: AppColors.divider),
+          ),
+          padding: const EdgeInsets.all(18),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(11),
+                decoration: BoxDecoration(color: AppColors.tealSoft, borderRadius: BorderRadius.circular(11)),
+                child: Icon(icon, color: AppColors.tealDeep, size: 22),
               ),
-            ),
-            const Icon(Icons.chevron_right_rounded, color: AppColors.inkMuted),
-          ],
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontFamily: AppTheme.displayFontFamily,
+                        fontSize: 16.5,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.ink,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(subtitle, style: const TextStyle(fontSize: 12.5, color: AppColors.inkMuted)),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right_rounded, color: AppColors.inkFaint),
+            ],
+          ),
         ),
       ),
     );
