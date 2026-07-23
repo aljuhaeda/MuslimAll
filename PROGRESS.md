@@ -22,6 +22,14 @@ remaining blocker before considering archiving MusliMalang/salatwebapp.
   — 189 lines across 3 files.
 - Initialized git and pushed to a private GitHub repo (2026-07-23) —
   work is now backed up, no longer local-machine-only.
+- Full pre-public code review (code-reviewer skill + manual security scan):
+  no hardcoded secrets, no leaked files, no plain-HTTP calls, `dio`/`get`
+  both on versions past the CVEs MusliMalang had to fix. One real minor
+  issue found and fixed: neither `Dio()` client had a request timeout,
+  so a hung connection would leave the loading spinner running forever
+  instead of surfacing the existing error message. Fixed in both
+  `TimesController` and `QuranController`; re-verified analyze/test
+  clean afterward.
 
 ## In progress
 - Content review and build verification (see Next up).
@@ -67,7 +75,8 @@ remaining blocker before considering archiving MusliMalang/salatwebapp.
 1. Get the religious content reviewed (recitations for Dzuhur/Ashar/
    Maghrib/Isya, Dalil references, theme-to-verse mapping) before
    treating it as authoritative. **This is now the only remaining
-   blocker** — code is verified working.
+   blocker** — code is verified working and pre-public code/security
+   reviewed clean.
 2. **As soon as #1 is done: flip this repo from private to public**
    (`gh repo edit aljuhaeda/MuslimAll --visibility public --accept-visibility-change-consequences`).
    Confirmed standing instruction from the project owner — do this
