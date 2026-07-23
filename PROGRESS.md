@@ -71,5 +71,9 @@ and the portfolio site's stale link to the now-archived salatwebapp
 
 ## Next up
 1. Finish or remove the "Audio (coming soon)" stub.
-2. Update the portfolio site's project #7 entry (currently links to
-   the now-archived salatwebapp) to point at MuslimAll instead.
+2. ~~Update the portfolio site's project #7 entry~~ — **done (2026-07-23)**.
+   Replaced both the MusliMalang and salatwebapp case studies with one
+   for MuslimAll; verified live at
+   [portfolioaljuhaeda.vercel.app/work/muslimall-prayer-companion](https://portfolioaljuhaeda.vercel.app/work/muslimall-prayer-companion).
+   The new case study has no screenshot yet (`images: []`) — add a real
+   one when possible.
