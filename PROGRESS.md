@@ -1,10 +1,10 @@
 # MuslimAll — Progress
 
 ## Status
-Pushed to GitHub (private): https://github.com/aljuhaeda/MuslimAll —
-backed up, and now build-verified (analyze/test/build/run all clean).
-**Still not reviewed for religious content accuracy** — that's the only
-remaining blocker before considering archiving MusliMalang/salatwebapp.
+**Public**: https://github.com/aljuhaeda/MuslimAll — content reviewed,
+code/security reviewed, build verified. Remaining open item is the
+audio stub and the still-separate archive decision for
+MusliMalang/salatwebapp (see Next up).
 
 ## Done
 - Merges MusliMalang (prayer times) and salatwebapp (prayer guide) into
@@ -30,29 +30,25 @@ remaining blocker before considering archiving MusliMalang/salatwebapp.
   instead of surfacing the existing error message. Fixed in both
   `TimesController` and `QuranController`; re-verified analyze/test
   clean afterward.
+- **Religious content reviewed by the project owner** (2026-07-23),
+  using the generated review page covering all 10 shared recitations
+  and all 5 prayers' niat/rakaat/jahar-sirr/qunut configuration.
+- **Flipped from private to public** (2026-07-23) —
+  `gh repo edit aljuhaeda/MuslimAll --visibility public`, confirmed via
+  `gh repo view` (`"visibility":"PUBLIC"`).
 
 ## In progress
-- Content review and build verification (see Next up).
+- Nothing currently active. Remaining items are tracked under Next up.
 
 ## Known issues / honest limitations
 - **One explicitly unfinished feature**: an audio button tooltipped
   `"Audio (coming soon)"` in `lib/view/prayer_guide_screen.dart:200`.
-- **Religious content has not had a scholarly review.** The code itself
-  carries a `FLAG FOR REVIEW` doc comment in `guide_builder.dart`:
-  denominational variation (nu/muhammadiyah/salafi) was only carried
-  over where it already existed for Subuh (iftitah, qunut) — not
-  independently re-verified per-organization for the other four prayers.
-  This is content people would actually pray from.
-- **Repo is private** — intentional, given the content-review gap above.
-  **Confirmed instruction: flip to public as soon as the religious
-  content review is done** — not conditional, just waiting on that one
-  trigger.
 - **Conflicts with existing tracked state**: this repo's original README
   claims MusliMalang and salatwebapp should be archived once MuslimAll
-  is "verified working." Build verification is now done (see below) —
-  the remaining blocker is specifically the content review, not the
-  code. Both predecessors remain independently live with no archive
-  notice until that review happens.
+  is "verified working." Code and content are now both verified — but
+  archiving the predecessors is tracked as a separate, still-open
+  decision (see Next up), not something done automatically alongside
+  the public flip.
 
 ## Verification log
 - 2026-07-23: discovered while working through tracked projects in
@@ -72,17 +68,8 @@ remaining blocker before considering archiving MusliMalang/salatwebapp.
   errors) — not just that the build command exited 0.
 
 ## Next up
-1. Get the religious content reviewed (recitations for Dzuhur/Ashar/
-   Maghrib/Isya, Dalil references, theme-to-verse mapping) before
-   treating it as authoritative. **This is now the only remaining
-   blocker** — code is verified working and pre-public code/security
-   reviewed clean.
-2. **As soon as #1 is done: flip this repo from private to public**
-   (`gh repo edit aljuhaeda/MuslimAll --visibility public --accept-visibility-change-consequences`).
-   Confirmed standing instruction from the project owner — do this
-   without waiting for a fresh ask once the review is confirmed done.
-3. Finish or remove the "Audio (coming soon)" stub.
-4. Update the portfolio site's project links if MuslimAll is meant to
+1. Finish or remove the "Audio (coming soon)" stub.
+2. Update the portfolio site's project links if MuslimAll is meant to
    replace what's featured there.
-5. Only then: archive MusliMalang and salatwebapp — that's a separate,
-   still-open decision from the public/private flip.
+3. Decide whether/when to archive MusliMalang and salatwebapp — still a
+   separate, open decision from the public flip (which is now done).
