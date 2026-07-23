@@ -3,9 +3,9 @@
 ## Status
 **Public**: https://github.com/aljuhaeda/MuslimAll — content reviewed,
 code/security reviewed, build verified. MusliMalang and salatwebapp are
-both now archived in its favor. Remaining open items: the audio stub
-and the portfolio site's stale link to the now-archived salatwebapp
-(see Next up).
+archived in its favor; the portfolio site's project entry points here.
+Audio plumbing is now real (not a stub) for one recitation; a full
+visual redesign is in scoping (see Next up).
 
 ## Done
 - Merges MusliMalang (prayer times) and salatwebapp (prayer guide) into
@@ -41,16 +41,35 @@ and the portfolio site's stale link to the now-archived salatwebapp
   archive`, confirmed via `gh repo view` (`"isArchived":true` for both).
   Both repos' own `PROGRESS.md` updated and pushed before archiving so
   the record survives read-only status.
+- **Portfolio site case study updated** (2026-07-23) — replaced both the
+  MusliMalang and salatwebapp write-ups with one for MuslimAll, verified
+  live.
+- **Real audio playback added** (2026-07-23) — `audioplayers` wired to
+  the guide controller (play/stop per step, auto-stop on step/prayer
+  change). Al-Fatihah's recitation streams from the Islamic Network CDN
+  (free/open, verified live — the same infrastructure behind the
+  alquran.cloud API). The other 9 shared recitations aren't Quranic
+  verses, so that CDN doesn't cover them, and no comparably verified
+  free/licensed source was found — `audioUrl` stays `null` for those
+  rather than guessing at a source. Button disables itself when no
+  audio exists for the current step instead of pretending it works.
+- **Fixed a real UX bug**: Panduan Sholat had no visible control to
+  advance between steps — swipe was the only way to move, with no
+  affordance signaling that. Added persistent Previous/Next buttons.
 
 ## In progress
-- Nothing currently active. Remaining items are tracked under Next up.
+- Full visual redesign — direction being scoped with the project owner
+  before implementation (centered/minimalist/professional target
+  aesthetic; specifics pending).
 
 ## Known issues / honest limitations
-- **One explicitly unfinished feature**: an audio button tooltipped
-  `"Audio (coming soon)"` in `lib/view/prayer_guide_screen.dart:200`.
-- **The live portfolio site still links to salatwebapp as project #7**,
-  which is now archived (read-only, but still viewable — not broken,
-  just stale). Needs updating to point at MuslimAll instead, or removal.
+- **Audio coverage is 1 of 10 shared recitations** (Al-Fatihah only).
+  The other 9 (takbir, iftitah, ruku', i'tidal, sujud, the
+  sitting-between-prostrations dua, qunut, tahiyat, salam) have no
+  verified free/licensed audio source yet — would need either a
+  properly licensed source or real recordings.
+- The live portfolio site's project entry now correctly points to
+  MuslimAll (see portfolio-website's own PROGRESS.md).
 
 ## Verification log
 - 2026-07-23: discovered while working through tracked projects in
@@ -70,10 +89,9 @@ and the portfolio site's stale link to the now-archived salatwebapp
   errors) — not just that the build command exited 0.
 
 ## Next up
-1. Finish or remove the "Audio (coming soon)" stub.
-2. ~~Update the portfolio site's project #7 entry~~ — **done (2026-07-23)**.
-   Replaced both the MusliMalang and salatwebapp case studies with one
-   for MuslimAll; verified live at
-   [portfolioaljuhaeda.vercel.app/work/muslimall-prayer-companion](https://portfolioaljuhaeda.vercel.app/work/muslimall-prayer-companion).
-   The new case study has no screenshot yet (`images: []`) — add a real
-   one when possible.
+1. Full visual redesign — gathering direction from the project owner
+   (color, type, layout density, tone) before touching any UI code.
+2. Extend audio coverage beyond Al-Fatihah, once a real source (licensed
+   or recorded) exists for the other 9 shared recitations.
+3. Add a real screenshot to the portfolio case study (`images: []`
+   currently — none was capturable in the working environment).
