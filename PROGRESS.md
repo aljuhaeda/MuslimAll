@@ -2,8 +2,9 @@
 
 ## Status
 Pushed to GitHub (private): https://github.com/aljuhaeda/MuslimAll —
-backed up, but **not yet verified or reviewed**. Do not archive
-MusliMalang or salatwebapp until the "Next up" items below are done.
+backed up, and now build-verified (analyze/test/build/run all clean).
+**Still not reviewed for religious content accuracy** — that's the only
+remaining blocker before considering archiving MusliMalang/salatwebapp.
 
 ## Done
 - Merges MusliMalang (prayer times) and salatwebapp (prayer guide) into
@@ -34,16 +35,14 @@ MusliMalang or salatwebapp until the "Next up" items below are done.
   over where it already existed for Subuh (iftitah, qunut) — not
   independently re-verified per-organization for the other four prayers.
   This is content people would actually pray from.
-- **Build/test status unconfirmed.** No Flutter SDK available in this
-  environment to run `flutter analyze`/`flutter test` — tests exist but
-  have not been executed against this code.
 - **Repo is private** — intentional, given the content-review gap above.
   Flip to public once reviewed, if desired.
 - **Conflicts with existing tracked state**: this repo's original README
   claims MusliMalang and salatwebapp should be archived once MuslimAll
-  is "verified working." That condition is not yet met (see above) —
-  both remain independently live with no archive notice, and that's the
-  correct state until the Next up items are done.
+  is "verified working." Build verification is now done (see below) —
+  the remaining blocker is specifically the content review, not the
+  code. Both predecessors remain independently live with no archive
+  notice until that review happens.
 
 ## Verification log
 - 2026-07-23: discovered while working through tracked projects in
@@ -52,18 +51,23 @@ MusliMalang or salatwebapp until the "Next up" items below are done.
 - 2026-07-23: read `guide_builder.dart` and `prayer_guides.dart`
   directly to confirm content completeness (see Done above) rather than
   trusting the README's claims.
-- 2026-07-23: `git init`, committed, pushed to a new private GitHub
-  repo. No Flutter SDK available locally, so `flutter analyze`/`test`
-  still unconfirmed.
+- 2026-07-23: `git init`, committed, pushed to a new private GitHub repo.
+- 2026-07-23: found the Flutter SDK was actually installed locally at
+  `C:\Users\aljuh\flutter_sdk` (just not on PATH) and fully re-verified:
+  `flutter analyze` — no issues. `flutter test` — all 14 tests pass,
+  including structural-correctness tests for every prayer's rakaat count
+  and step sequence. `flutter build web` — builds clean. Served the
+  build locally and confirmed the Flutter engine actually mounts in a
+  real browser (`flt-glass-pane` present, all assets 200, zero console
+  errors) — not just that the build command exited 0.
 
 ## Next up
 1. Get the religious content reviewed (recitations for Dzuhur/Ashar/
    Maghrib/Isya, Dalil references, theme-to-verse mapping) before
-   treating it as authoritative.
-2. Run `flutter analyze` and `flutter test` on a machine with the
-   Flutter SDK installed; fix anything that surfaces.
-3. Finish or remove the "Audio (coming soon)" stub.
-4. Update the portfolio site's project links if MuslimAll is meant to
+   treating it as authoritative. **This is now the only remaining
+   blocker** — code is verified working.
+2. Finish or remove the "Audio (coming soon)" stub.
+3. Update the portfolio site's project links if MuslimAll is meant to
    replace what's featured there.
-5. Only then: archive MusliMalang and salatwebapp, and flip this repo
+4. Only then: archive MusliMalang and salatwebapp, and flip this repo
    to public if desired.
