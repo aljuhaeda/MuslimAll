@@ -1,48 +1,69 @@
 # MuslimAll — Progress
 
 ## Status
-**Local prototype, not yet a git repository, not yet on GitHub.**
-Not part of the original 12-repo audit — discovered during progress
-tracking on 2026-07-23.
+Pushed to GitHub (private): https://github.com/aljuhaeda/MuslimAll —
+backed up, but **not yet verified or reviewed**. Do not archive
+MusliMalang or salatwebapp until the "Next up" items below are done.
 
-## Done (per its own README — not independently verified this session)
+## Done
 - Merges MusliMalang (prayer times) and salatwebapp (prayer guide) into
   one app: Indonesia-wide prayer times, full 5-prayer step-by-step guide,
   themed + random Quran verses.
-- Prayer-guide content model extended to all 5 prayers (Dzuhur, Ashar,
-  Maghrib, Isya newly written; Subuh carried over from salatwebapp,
-  which only had Subuh built out).
+- Actually verified by reading the code (not just the README): all 5
+  prayers (Subuh, Dzuhur, Ashar, Maghrib, Isya) have real, structurally
+  correct guide content generated via a shared `buildGuide()` in
+  `lib/data/guide_builder.dart` — correct rakaat counts, correct
+  jahar/sirr Fatihah rules per prayer, Qunut correctly gated to Subuh
+  only. This is content-complete, further along than salatwebapp
+  (Subuh-only).
 - New "lantern at night" design identity, distinct from MusliMalang's.
-- Own test suite (`test/logic`, `test/model`, widget smoke test).
+- Own test suite exists (`test/logic`, `test/model`, widget smoke test)
+  — 189 lines across 3 files.
+- Initialized git and pushed to a private GitHub repo (2026-07-23) —
+  work is now backed up, no longer local-machine-only.
 
 ## In progress
-- Presumably active development — `lib/`, `build/`, `.dart_tool/` all
-  modified 2026-07-21, more recent than MusliMalang's last commit.
+- Content review and build verification (see Next up).
 
-## Known issues / honest limitations (stated by the project's own README)
-- **Religious content has not had a scholarly review.** The prayer-guide
-  recitations and theme-to-verse mapping are described as "best-effort
-  compilation," explicitly flagged as needing review before being
-  treated as authoritative — this is content people would actually pray
-  from.
-- **Not in git.** No commit history, no remote, nothing pushed to
-  GitHub. If this machine is lost, so is this work.
-- **Conflicts with existing tracked state**: this repo's README claims
-  MusliMalang and salatwebapp should be archived once MuslimAll is
-  "verified working" — but both are still listed as independently live
-  in [C:\dev\PROGRESS.md](../../PROGRESS.md) and still have their own
-  GitHub repos with no archive notice. This needs a decision from the
-  project owner, not an automatic fix.
+## Known issues / honest limitations
+- **One explicitly unfinished feature**: an audio button tooltipped
+  `"Audio (coming soon)"` in `lib/view/prayer_guide_screen.dart:200`.
+- **Religious content has not had a scholarly review.** The code itself
+  carries a `FLAG FOR REVIEW` doc comment in `guide_builder.dart`:
+  denominational variation (nu/muhammadiyah/salafi) was only carried
+  over where it already existed for Subuh (iftitah, qunut) — not
+  independently re-verified per-organization for the other four prayers.
+  This is content people would actually pray from.
+- **Build/test status unconfirmed.** No Flutter SDK available in this
+  environment to run `flutter analyze`/`flutter test` — tests exist but
+  have not been executed against this code.
+- **Repo is private** — intentional, given the content-review gap above.
+  Flip to public once reviewed, if desired.
+- **Conflicts with existing tracked state**: this repo's original README
+  claims MusliMalang and salatwebapp should be archived once MuslimAll
+  is "verified working." That condition is not yet met (see above) —
+  both remain independently live with no archive notice, and that's the
+  correct state until the Next up items are done.
 
 ## Verification log
 - 2026-07-23: discovered while working through tracked projects in
-  order. Not a git repo, so `/security-review` (diff-based) doesn't
-  apply. No Flutter SDK available locally to run `flutter analyze`/`test`.
-  Nothing in this entry is independently verified — it restates what
-  the project's own README claims.
+  order (was not part of the original 12-repo audit). Not a git repo at
+  discovery time, so `/security-review` didn't apply.
+- 2026-07-23: read `guide_builder.dart` and `prayer_guides.dart`
+  directly to confirm content completeness (see Done above) rather than
+  trusting the README's claims.
+- 2026-07-23: `git init`, committed, pushed to a new private GitHub
+  repo. No Flutter SDK available locally, so `flutter analyze`/`test`
+  still unconfirmed.
 
 ## Next up
-- Owner decision needed: (1) initialize git + push to GitHub, (2) get
-  the religious content reviewed before wider use, (3) decide whether/
-  when to actually archive MusliMalang and salatwebapp per this
-  project's stated intent, or keep all three live.
+1. Get the religious content reviewed (recitations for Dzuhur/Ashar/
+   Maghrib/Isya, Dalil references, theme-to-verse mapping) before
+   treating it as authoritative.
+2. Run `flutter analyze` and `flutter test` on a machine with the
+   Flutter SDK installed; fix anything that surfaces.
+3. Finish or remove the "Audio (coming soon)" stub.
+4. Update the portfolio site's project links if MuslimAll is meant to
+   replace what's featured there.
+5. Only then: archive MusliMalang and salatwebapp, and flip this repo
+   to public if desired.
