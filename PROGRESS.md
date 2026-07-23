@@ -2,9 +2,10 @@
 
 ## Status
 **Public**: https://github.com/aljuhaeda/MuslimAll — content reviewed,
-code/security reviewed, build verified. Remaining open item is the
-audio stub and the still-separate archive decision for
-MusliMalang/salatwebapp (see Next up).
+code/security reviewed, build verified. MusliMalang and salatwebapp are
+both now archived in its favor. Remaining open items: the audio stub
+and the portfolio site's stale link to the now-archived salatwebapp
+(see Next up).
 
 ## Done
 - Merges MusliMalang (prayer times) and salatwebapp (prayer guide) into
@@ -36,6 +37,10 @@ MusliMalang/salatwebapp (see Next up).
 - **Flipped from private to public** (2026-07-23) —
   `gh repo edit aljuhaeda/MuslimAll --visibility public`, confirmed via
   `gh repo view` (`"visibility":"PUBLIC"`).
+- **MusliMalang and salatwebapp archived** (2026-07-23) — `gh repo
+  archive`, confirmed via `gh repo view` (`"isArchived":true` for both).
+  Both repos' own `PROGRESS.md` updated and pushed before archiving so
+  the record survives read-only status.
 
 ## In progress
 - Nothing currently active. Remaining items are tracked under Next up.
@@ -43,12 +48,9 @@ MusliMalang/salatwebapp (see Next up).
 ## Known issues / honest limitations
 - **One explicitly unfinished feature**: an audio button tooltipped
   `"Audio (coming soon)"` in `lib/view/prayer_guide_screen.dart:200`.
-- **Conflicts with existing tracked state**: this repo's original README
-  claims MusliMalang and salatwebapp should be archived once MuslimAll
-  is "verified working." Code and content are now both verified — but
-  archiving the predecessors is tracked as a separate, still-open
-  decision (see Next up), not something done automatically alongside
-  the public flip.
+- **The live portfolio site still links to salatwebapp as project #7**,
+  which is now archived (read-only, but still viewable — not broken,
+  just stale). Needs updating to point at MuslimAll instead, or removal.
 
 ## Verification log
 - 2026-07-23: discovered while working through tracked projects in
@@ -69,7 +71,5 @@ MusliMalang/salatwebapp (see Next up).
 
 ## Next up
 1. Finish or remove the "Audio (coming soon)" stub.
-2. Update the portfolio site's project links if MuslimAll is meant to
-   replace what's featured there.
-3. Decide whether/when to archive MusliMalang and salatwebapp — still a
-   separate, open decision from the public flip (which is now done).
+2. Update the portfolio site's project #7 entry (currently links to
+   the now-archived salatwebapp) to point at MuslimAll instead.
