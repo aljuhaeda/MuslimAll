@@ -36,7 +36,9 @@ remaining blocker before considering archiving MusliMalang/salatwebapp.
   independently re-verified per-organization for the other four prayers.
   This is content people would actually pray from.
 - **Repo is private** — intentional, given the content-review gap above.
-  Flip to public once reviewed, if desired.
+  **Confirmed instruction: flip to public as soon as the religious
+  content review is done** — not conditional, just waiting on that one
+  trigger.
 - **Conflicts with existing tracked state**: this repo's original README
   claims MusliMalang and salatwebapp should be archived once MuslimAll
   is "verified working." Build verification is now done (see below) —
@@ -66,8 +68,12 @@ remaining blocker before considering archiving MusliMalang/salatwebapp.
    Maghrib/Isya, Dalil references, theme-to-verse mapping) before
    treating it as authoritative. **This is now the only remaining
    blocker** — code is verified working.
-2. Finish or remove the "Audio (coming soon)" stub.
-3. Update the portfolio site's project links if MuslimAll is meant to
+2. **As soon as #1 is done: flip this repo from private to public**
+   (`gh repo edit aljuhaeda/MuslimAll --visibility public --accept-visibility-change-consequences`).
+   Confirmed standing instruction from the project owner — do this
+   without waiting for a fresh ask once the review is confirmed done.
+3. Finish or remove the "Audio (coming soon)" stub.
+4. Update the portfolio site's project links if MuslimAll is meant to
    replace what's featured there.
-4. Only then: archive MusliMalang and salatwebapp, and flip this repo
-   to public if desired.
+5. Only then: archive MusliMalang and salatwebapp — that's a separate,
+   still-open decision from the public/private flip.
