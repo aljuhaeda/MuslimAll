@@ -12,6 +12,16 @@
 /// independently re-verified per-organization for the other four prayers.
 /// Please review before treating this as authoritative; this is content
 /// people will actually pray from.
+///
+/// FLAG FOR REVIEW (audio): only Al-Fatihah has a recitation audio URL,
+/// sourced from the Islamic Network CDN (the same free/open
+/// infrastructure that backs the alquran.cloud API — verified live,
+/// widely used by other open-source Quran apps). The other nine shared
+/// recitations (takbir, iftitah, ruku', i'tidal, sujud, the
+/// sitting-between-prostrations dua, qunut, tahiyat, salam) are NOT
+/// Quranic verses, so that CDN doesn't cover them, and no comparably
+/// verified free/licensed source was found for them — audioUrl is left
+/// null rather than guessed at. See MuslimAll's PROGRESS.md.
 library;
 
 import '../model/prayer_guide.dart';
@@ -48,6 +58,8 @@ const _fatihah = StepContent(
       'Bismillahir rahmanir rahim. Alhamdulillahi rabbil alamin. Arrahmanirrahim. Maliki yaumiddin. Iyyaka nabudu wa iyyaka nastain. Ihdinas shiratal mustaqim. Siratal ladzina an amta alaihim ghairil maghdubi alaihim waladhallin.',
   translation:
       'In the name of Allah... All praise is due to Allah... The Entirely Merciful... [Full Surah Al-Fatihah]',
+  // Islamic Network CDN — Mishary Alafasy recitation, full surah, free/open.
+  audioUrl: 'https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/1.mp3',
 );
 const _fatihahDalil = 'Al-Quran 1:1-7';
 

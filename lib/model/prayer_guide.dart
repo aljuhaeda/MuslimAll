@@ -27,11 +27,16 @@ class StepContent {
   final String arabic;
   final String? transliteration;
   final String? translation;
+  // Streamed, not bundled — same pattern as prayer times/Quran verses
+  // elsewhere in the app. Null where no verified free/licensed source
+  // exists yet (see FLAG FOR REVIEW in guide_builder.dart).
+  final String? audioUrl;
 
   const StepContent({
     required this.arabic,
     this.transliteration,
     this.translation,
+    this.audioUrl,
   });
 }
 

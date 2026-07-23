@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,10 +13,48 @@ class GuideController extends GetxController {
   final audioOn = false.obs;
   final currentStepIndex = 0.obs;
 
+  final AudioPlayer _player = AudioPlayer();
+
   @override
   void onInit() {
     super.onInit();
     _loadConfig();
+    _player.onPlayerComplete.listen((_) => audioOn.value = false);
+    // Stop playback whenever the visible step changes, so audio from a
+    // previous step never keeps playing under a new one.
+    ever(currentStepIndex, (_) => _stopAudio());
+    ever(selectedPrayerId, (_) => _stopAudio());
+  }
+
+  @override
+  void onClose() {
+    _player.dispose();
+    super.onClose();
+  }
+
+  /// The URL for the step currently on screen, if one exists.
+  String? get currentStepAudioUrl {
+    if (currentStepIndex.value >= visibleSteps.length) return null;
+    final step = visibleSteps[currentStepIndex.value];
+    return resolvedVariations[step.stepId]?.content.audioUrl;
+  }
+
+  Future<void> toggleAudio() async {
+    final url = currentStepAudioUrl;
+    if (url == null) return;
+    if (audioOn.value) {
+      await _stopAudio();
+    } else {
+      audioOn.value = true;
+      await _player.play(UrlSource(url));
+    }
+  }
+
+  Future<void> _stopAudio() async {
+    if (audioOn.value) {
+      audioOn.value = false;
+      await _player.stop();
+    }
   }
 
   Future<void> _loadConfig() async {
@@ -42,6 +81,4 @@ class GuideController extends GetxController {
     selectedPrayerId.value = id;
     currentStepIndex.value = 0;
   }
-
-  void toggleAudio() => audioOn.value = !audioOn.value;
 }

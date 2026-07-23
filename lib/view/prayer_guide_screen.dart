@@ -30,6 +30,14 @@ class _PrayerGuideScreenState extends State<PrayerGuideScreen> {
     _pageController.jumpToPage(0);
   }
 
+  void _goToStep(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +72,36 @@ class _PrayerGuideScreenState extends State<PrayerGuideScreen> {
             }),
           ),
         ],
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+          child: Obx(() {
+            final index = controller.currentStepIndex.value;
+            final total = controller.visibleSteps.length;
+            final isFirst = index <= 0;
+            final isLast = index >= total - 1;
+            return Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: isFirst ? null : () => _goToStep(index - 1),
+                    icon: const Icon(Icons.arrow_back),
+                    label: const Text('Sebelumnya'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: isLast ? null : () => _goToStep(index + 1),
+                    icon: const Icon(Icons.arrow_forward),
+                    label: const Text('Selanjutnya'),
+                  ),
+                ),
+              ],
+            );
+          }),
+        ),
       ),
     );
   }
@@ -191,14 +229,20 @@ class _StepCard extends StatelessWidget {
                     backgroundColor: AppColors.amberLight.withValues(alpha: 0.4),
                   ),
                   const SizedBox(width: 8),
-                  Obx(() => IconButton(
-                        onPressed: controller.toggleAudio,
-                        icon: Icon(
-                          controller.audioOn.value ? Icons.volume_up : Icons.volume_off,
-                          color: AppColors.indigo,
-                        ),
-                        tooltip: 'Audio (coming soon)',
-                      )),
+                  Obx(() {
+                    final hasAudio = variation.content.audioUrl != null;
+                    final playing = hasAudio && controller.audioOn.value;
+                    return IconButton(
+                      onPressed: hasAudio ? controller.toggleAudio : null,
+                      icon: Icon(
+                        playing ? Icons.volume_up : Icons.volume_off,
+                        color: hasAudio ? AppColors.indigo : AppColors.inkMuted,
+                      ),
+                      tooltip: hasAudio
+                          ? (playing ? 'Hentikan audio' : 'Putar audio')
+                          : 'Audio belum tersedia untuk langkah ini',
+                    );
+                  }),
                 ],
               ),
               if (step.isConditional && step.conditionalType == 'qunut')
