@@ -51,7 +51,10 @@ class TimesController extends GetxController {
     final now = DateTime.now();
     final formattedDate =
         "${now.day.toString().padLeft(2, '0')}-${now.month.toString().padLeft(2, '0')}-${now.year}";
-    final dio = Dio();
+    final dio = Dio(BaseOptions(
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
+    ));
     final res = await dio.get(
       "https://api.aladhan.com/v1/timingsByCity/$formattedDate",
       queryParameters: {

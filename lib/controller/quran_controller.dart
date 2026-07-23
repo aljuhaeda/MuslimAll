@@ -29,7 +29,10 @@ class QuranController extends GetxController {
   Future<SuratAcak> _getSuratAcak() async {
     final random = Random();
     final nomorSurat = random.nextInt(114) + 1;
-    final dio = Dio();
+    final dio = Dio(BaseOptions(
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
+    ));
     final res = await dio.get('https://equran.id/api/v2/surat/$nomorSurat');
     final int jumlahAyat = res.data['data']['jumlahAyat'];
     final ayatIndex = random.nextInt(jumlahAyat);
